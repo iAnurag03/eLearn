@@ -1,7 +1,7 @@
 import {User} from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
-// import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
+import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
 export const register = async (req,res) => {
     try {
@@ -120,17 +120,30 @@ export const updateProfile = async (req,res) => {
                 success:false
             }) 
         }
-        // extract public id of the old image from the url is it exists;
-        if(user.photoUrl){
-            const publicId = user.photoUrl.split("/").pop().split(".")[0]; // extract public id
-            deleteMediaFromCloudinary(publicId);
+
+        const updatedData = { name };
+        
+        // Only handle photo update if a new photo was uploaded
+        if (profilePhoto) {
+            try {
+                // Delete old photo if it exists
+                if(user.photoUrl){
+                    const publicId = user.photoUrl.split("/").pop().split(".")[0];
+                    await deleteMediaFromCloudinary(publicId);
+                }
+
+                // Upload new photo
+                const cloudResponse = await uploadMedia(profilePhoto.path);
+                updatedData.photoUrl = cloudResponse.secure_url;
+            } catch (error) {
+                console.error("Error handling photo:", error);
+                return res.status(500).json({
+                    success: false,
+                    message: "Failed to update profile photo"
+                });
+            }
         }
 
-        // upload new photo
-        const cloudResponse = await uploadMedia(profilePhoto.path);
-        const photoUrl = cloudResponse.secure_url;
-
-        const updatedData = {name, photoUrl};
         const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {new:true}).select("-password");
 
         return res.status(200).json({

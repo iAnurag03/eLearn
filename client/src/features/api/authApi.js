@@ -36,7 +36,7 @@ export const authApi = createApi({
                 url:"profile",
                 method:"GET"
             }),
-            async onQueryStarted(arg, {queryFulfilled, dispatch}){
+            async onQueryStarted(_, {queryFulfilled, dispatch}){
                 try{
                     const result = await queryFulfilled;
                     dispatch(userLoggedIn({user:result.data.user}));
