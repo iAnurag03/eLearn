@@ -85,10 +85,13 @@ const Navbar = () => {
                     logoutHandler();
                   }}>Logout</DropdownMenuItem>
                 </DropdownMenuGroup>
-
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setOpen(false)}>Dashboard</DropdownMenuItem>
-                <DropdownMenuSeparator />
+ 
+                {user?.role === "instructor" && (
+                  <>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
+                  </>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
@@ -178,7 +181,7 @@ const MobileNavbar = ({ user }) => {
            <SheetFooter>
               <Button onClick={() => {
                 setOpen(false);
-                navigate("/dashboard");
+                navigate("/admin/dashboard");
               }}>
                 Dashboard
               </Button>

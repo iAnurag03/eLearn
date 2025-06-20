@@ -9,6 +9,12 @@ import { RouterProvider } from 'react-router'
 import Courses from './Pages/student/Courses'
 import MyLearning from './Pages/student/MyLearning.jsx'
 import Profile from './Pages/student/Profile'
+import Sidebar from './Pages/admin/Sidebar'
+import Dashboard from './Pages/admin/Dashboard'
+import CourseTable from './Pages/admin/CourseTable'
+import AddCourse from './Pages/admin/AddCourse'
+import EditCourse from './Pages/admin/EditCourse'
+
 
 
 const appRouter = createBrowserRouter([
@@ -33,9 +39,32 @@ const appRouter = createBrowserRouter([
       {
         path:"profile",
         element:<Profile/> 
+      },
+      {
+         path:"admin",
+         element:<Sidebar/>,
+         children: [
+          {
+            path: "dashboard",
+            element: <Dashboard />,
+          },
+          {
+            path: "course",
+            element: <CourseTable />,
+          },
+          {
+            path:"course/create",
+            element:<AddCourse/>
+          },
+          {
+            path:"course/:courseId",
+            element:<EditCourse/>
+          }
+        ]
       }
     ]
-  }
+  },
+  
 ])
 const App = () => {
   return (

@@ -38,7 +38,7 @@ export const deleteMediaFromCloudinary = async(publicId) => {
     }
 }
 
-export const deleteVideo = async(publicId)=>{
+export const deleteVideoFromCloudinary = async(publicId)=>{
     try{
           await cloudinary.uploader.destroy(publicId,{resource_type:"video"})
     }catch(error){
