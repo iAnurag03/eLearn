@@ -1,10 +1,11 @@
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import CourseCard from "./CourseCard";
+import { useGetPublishedCourseQuery } from "@/features/api/courseApi";
 
 const Courses = () => {
-    const isLoading = false;
-    const courses = [1,2,3,4,4,4,4,4,]
+   const {data, isLoading,isError}= useGetPublishedCourseQuery();
+   if(isError) return <h1>courses cannot be fetched</h1>
   return (
     <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto p-6">
@@ -16,7 +17,7 @@ const Courses = () => {
               <CourseSkeleton key={index} />
             ))
           ) : (
-            courses.map((course,index)=><CourseCard key={index}/>)
+           data&&data.courses && data.courses.map((course,index)=><CourseCard key={index} course={course}/> )
           )}
           </div>
         </div>

@@ -22,6 +22,16 @@ import jwt from "jsonwebtoken";
         next();
     }catch(error){
            console.log(error);
+           if(error.name === 'TokenExpiredError'){
+               return res.status(401).json({
+                   success: false,
+                   message: "Token expired. Please login again."
+               });
+           }
+           return res.status(401).json({
+               success: false,
+               message: "Authentication failed"
+           });
     }
 }
 
