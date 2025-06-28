@@ -1,4 +1,4 @@
-# eLearn Platform
+# eLearn: Online Education Platform
 
 This is a full-stack e-learning platform with separate client and server applications.
 
