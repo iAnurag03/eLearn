@@ -60,7 +60,7 @@ Detailed view of a course with curriculum, and the video lecture playback interf
  
 </p>
 <p float="left">
-  <img src="screenshots/courseDetails1.png" width="45%" />
+  <img src="screenshots/courseDetails.png" width="45%" />
   <img src="screenshots/courseDetails2.png" width="45%" />
  
 </p>
