@@ -54,7 +54,7 @@ const Navbar = () => {
   
   return (
     <div className="h-16 dark:bg-[#0A0A0A] bg-white border-b dark:border-b-gray-800 border-b-gray-200 fixed top-0 left-0 right-0 duration-300 z-10">
-      <div className="md:flex max-w-7xl mx-autp hidden md:flex justify-between items-center gap-10">
+      <div className=" max-w-7xl mx-autp hidden md:flex justify-between items-center gap-10">
         <div>
           <Link to="/">
           <School size={"30"} />
@@ -102,7 +102,7 @@ const Navbar = () => {
               <Button onClick={() => navigate("/login")} >Signup</Button>
             </div>
           )}
-          <DarkMode />
+         
         </div>
       </div>
        <div className="flex md:hidden items-center justify-between px-4 ">
@@ -155,7 +155,7 @@ const MobileNavbar = ({ user }) => {
       <SheetContent className="flex flex-col" >
         <SheetHeader className="flex flex-row justify-between items-center">
           <SheetTitle>My Account</SheetTitle>
-           <DarkMode/>
+          
         </SheetHeader>
            <Separator className="mr-2"/>
            <nav className="flex flex-col space-y-4"> 

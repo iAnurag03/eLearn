@@ -5,7 +5,7 @@ import userRoute from "./routes/user.routes.js";
 import courseRoute from "./routes/course.routes.js";
 import mediaRoute from "./routes/media.routes.js";
 import purchaseRoute from "./routes/purchaseCourse.routes.js";
-
+import courseProgressRoute from "./routes/courseProgress.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors"
  
@@ -36,5 +36,6 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/course", courseRoute); 
 app.use("/api/v1/media", mediaRoute);
 app.use("/api/v1/purchase", purchaseRoute);
+app.use("/api/v1/progress", courseProgressRoute);
 
 

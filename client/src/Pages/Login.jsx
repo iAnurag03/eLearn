@@ -137,7 +137,7 @@ const Login = () => {
                  <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin"/>Please Wait
                  </>
-                  ):"login" 
+                  ):"signup" 
                 }
               </Button>
             </CardFooter>

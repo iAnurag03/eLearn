@@ -21,9 +21,11 @@ import {
 import { toast } from "sonner";
 
 const Profile = () => {
-  const [name, setName] = useState("");
+  
   const [profilePhoto, setProfilePhoto] = useState("");
   const { data, isLoading, refetch } = useLoadUserQuery();
+  const { user } = data;
+  const [name, setName] = useState(user.name);
   const [
     updateUser,
     { data: updateUserData, isLoading: updateUserIsLoading, isError, error, isSuccess },
@@ -57,7 +59,7 @@ const Profile = () => {
     return <h1>Loading....</h1>;
   }
 
-  const { user } = data;
+ 
 
   return (
     <div className="max-w-4xl mx-auto px-4 my-10 mt-24">
@@ -118,6 +120,7 @@ const Profile = () => {
                     type="text"
                     placeholder="Name"
                     className="col-span-3"
+                    
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
